@@ -4,7 +4,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
 using template.Entities.Models;
+using template.Helpers;
 using template.Services.Interface;
 
 namespace template.Controllers
@@ -14,9 +16,12 @@ namespace template.Controllers
     public class ApiController : ControllerBase
     {
         private IService _service;
-        public ApiController(IService service)
+        private IConfiguration _config;
+
+        public ApiController(IService service, IConfiguration config)
         {
             _service = service;
+            _config = config;
         }
 
 
@@ -31,6 +36,9 @@ namespace template.Controllers
         [Route("GetFromDbTest")]
         public ActionResult GetFromDbTest()
         {
+            var exampleConfig = new ExampleConfig(_config);
+            var baseUrl = exampleConfig.ExampleApiBaseUrl;
+
             ExampleModel res;
             try
             {
