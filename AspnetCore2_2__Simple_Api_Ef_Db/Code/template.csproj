@@ -19,6 +19,7 @@
   <ItemGroup>
     <Folder Include="Entities\DTO\Responses\" />
     <Folder Include="Entities\DTO\Requests\" />
+    <Folder Include="wwwroot\lib\" />
   </ItemGroup>
 
 </Project>
